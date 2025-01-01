@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Baby</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>画像仕分けゲーム</h1>
+        <div id="start-screen">
+            <p>このゲームでは、表示される画像が「Saneyuki」か「Mahiro」かを判断します。10問連続で出題され、正解数とポイントが表示されます。</p>
+            <button onclick="startGame()">ゲームスタート</button>
+        </div>
+        <div id="game" style="display: none;">
+            <img id="image" src="" alt="game image">
+            <div class="buttons">
+                <button onclick="checkAnswer('saneyuki')">Saneyuki</button>
+                <button onclick="checkAnswer('mahiro')">Mahiro</button>
+            </div>
+            <div id="timer">10.00</div>
+            <div id="message"></div>
+        </div>
+        <div id="result" style="display: none;"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
