@@ -11,6 +11,22 @@ let points = 0;
 let questionCount = 0;
 let timer;
 let timeLeft = 10.00;
+let preloadedImages = [];
+
+// 画像を事前に読み込む関数
+function preloadImages() {
+    let loadedCount = 0;
+    images.forEach((image, index) => {
+        preloadedImages[index] = new Image();
+        preloadedImages[index].src = image.src;
+        preloadedImages[index].onload = () => {
+            loadedCount++;
+            if (loadedCount === images.length) {
+                document.getElementById('start-screen').style.display = 'block';
+            }
+        };
+    });
+}
 
 // ゲームを開始する関数
 function startGame() {
@@ -76,3 +92,6 @@ function showResult() {
     document.getElementById('result').style.display = 'block';
     document.getElementById('result').innerText = `正解数: ${score} / 10\nポイント: ${points}`;
 }
+
+// ページ読み込み時に画像を事前に読み込む
+window.onload = preloadImages;
