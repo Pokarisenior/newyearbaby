@@ -1,78 +1,63 @@
-// 画像のリストを定義
-const images = [];
-for (let i = 1; i <= 15; i++) {
-    images.push({ src: `img/saneyuki${String(i).padStart(2, '0')}.png`, type: 'saneyuki' });
-    images.push({ src: `img/mahiro${String(i).padStart(2, '0')}.png`, type: 'mahiro' });
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
 }
 
-let currentImageIndex = 0;
-let score = 0;
-let points = 0;
-let questionCount = 0;
-let timer;
-let timeLeft = 10.00;
-
-// ゲームを開始する関数
-function startGame() {
-    document.getElementById('start-screen').style.display = 'none';
-    document.getElementById('game').style.display = 'block';
-    document.getElementById('result').style.display = 'none';
-    score = 0;
-    points = 0;
-    questionCount = 0;
-    showNextImage();
+.container {
+    width: 375px;
+    height: 620px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    position: absolute;
+    left: 10px;
+    top: 10px;
 }
 
-// 次の画像を表示する関数
-function showNextImage() {
-    if (questionCount < 10) {
-        currentImageIndex = Math.floor(Math.random() * images.length);
-        document.getElementById('image').src = images[currentImageIndex].src;
-        document.getElementById('message').innerText = '';
-        questionCount++;
-        startTimer();
-    } else {
-        showResult();
-    }
+#game img {
+    width: 100%;
+    height: 300px; /* 画像の高さを固定 */
+    object-fit: cover; /* 画像のアスペクト比を維持 */
 }
 
-// タイマーを開始する関数
-function startTimer() {
-    timeLeft = 10.00;
-    document.getElementById('timer').innerText = timeLeft.toFixed(2);
-    timer = setInterval(() => {
-        timeLeft -= 0.01;
-        if (timeLeft <= 0) {
-            timeLeft = 0;
-            clearInterval(timer);
-            checkAnswer(null); // タイムアウト時に自動的に次の問題へ
-        }
-        document.getElementById('timer').innerText = timeLeft.toFixed(2);
-    }, 10);
+.buttons {
+    margin-top: 20px;
 }
 
-// プレイヤーの回答をチェックする関数
-function checkAnswer(answer) {
-    clearInterval(timer);
-    let message = '';
-    if (answer && images[currentImageIndex].type === answer) {
-        score++;
-        const earnedPoints = Math.floor(timeLeft * 100);
-        points += earnedPoints;
-        message = `正解 ${earnedPoints}pt`;
-    } else {
-        message = '不正解 0pt';
-    }
-    document.getElementById('message').innerText = message;
-    setTimeout(() => {
-        document.getElementById('image').src = '';
-        showNextImage();
-    }, 500);
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 22px;
+    cursor: pointer;
 }
 
-// 結果を表示する関数
-function showResult() {
-    document.getElementById('game').style.display = 'none';
-    document.getElementById('result').style.display = 'block';
-    document.getElementById('result').innerText = `正解数: ${score} / 10\nポイント: ${points}`;
+#timer {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#message {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: green;
+}
+
+#result {
+    font-size: 24px;
+    font-weight: bold;
+    color: blue;
+}
+
+.description {
+    text-align: left; /* 説明文を左寄せに */
 }
