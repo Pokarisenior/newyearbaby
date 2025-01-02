@@ -3,23 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Year Baby</title>
+    <title>正しき1票を！<br>半田家投票ゲーム</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>半田家仕分けゲーム</h1>
+        <h1>正しき1票を！<br>半田家投票ゲーム</h1>
         <div id="start-screen">
-            <p>表示される画像が「真之」か「真悠」かを瞬時に判断してください。<br>
-10問連続で出題され、正解数とポイントが表示されます。<br>
-ちなみに生みの親は9,171ptでした。</p>
+            <p class="description">
+                あけましておめでとうございます。本年もよろしくお願いします。<br>
+                わざわざふざけた年賀状のQRコードを読み込んでもらってお疲れ様です。QRを入れ込むネタだったので，どうせならと思い，おまけゲームページ作りました。<br>
+                真悠を育てる中「あれ，真之とおんなじ顔やん！」と思い，画像が「真之」か「真悠」か見分けるゲームです。<br>
+                ・とりあえず動けばいいで作っているので，バグったらすいません。<br>
+                ・バグの報告は不要です。直せない。<br>
+                ・子供が個人情報の概念を知る前には消します<br>
+                ・産みの親の得点は9,171ptでした。意外と見分けつきました。
+            </p>
             <button onclick="startGame()">ゲームスタート</button>
         </div>
         <div id="game" style="display: none;">
             <img id="image" src="" alt="game image">
             <div class="buttons">
-                <button onclick="checkAnswer('saneyuki')">Saneyuki</button>
-                <button onclick="checkAnswer('mahiro')">Mahiro</button>
+                <button onclick="checkAnswer('saneyuki')">真之</button>
+                <button onclick="checkAnswer('mahiro')">真悠</button>
             </div>
             <div id="timer">10.00</div>
             <div id="message"></div>
